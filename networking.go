@@ -6,7 +6,7 @@ import (
 	"net"
 	"strconv"
 	"sync"
-	"time"
+	//"time"
 
 	"github.com/anacrolix/utp"
 	"github.com/ccding/go-stun/stun"
@@ -151,7 +151,7 @@ func (rn *realNetworking) sendMessage(msg *message, expectResponse bool, id int6
 	msg.ID = id
 	rn.mutex.Unlock()
 
-	conn, err := rn.socket.DialTimeout("["+msg.Receiver.IP.String()+"]:"+strconv.Itoa(msg.Receiver.Port), time.Second)
+	conn, err := rn.socket.Dial("["+msg.Receiver.IP.String()+"]:"+strconv.Itoa(msg.Receiver.Port))
 	if err != nil {
 		return nil, err
 	}
